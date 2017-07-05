@@ -49,8 +49,17 @@ document.querySelector('.btn-roll').addEventListener('click', function(){
 
 document.querySelector('.btn-hold').addEventListener('click', function(){
 	scores[activePlayer] += roundScore;
-	document.querySelector('#score-'+ activePlayer).textContent = scores[activePlayer];
-	nextPlayer();
+	var playerScore = document.querySelector('#score-'+ activePlayer);
+	playerScore.textContent = scores[activePlayer];
+	if(scores[activePlayer] >= 100){
+		playerScore.textContent = "WINNER!";
+		document.querySelector('.btn-roll').style.display = "none";
+		document.querySelector('.btn-hold').style.display = "none";
+		document.querySelector('.dice').style.display = "none";
+
+	}else{
+		nextPlayer();
+	};
 });
 
 
