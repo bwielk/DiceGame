@@ -56,15 +56,12 @@ document.querySelector('.btn-hold').addEventListener('click', function(){
 		document.querySelector('.btn-roll').style.display = "none";
 		document.querySelector('.btn-hold').style.display = "none";
 		document.querySelector('.dice').style.display = "none";
-
+		document.querySelector('.player-'+ activePlayer +'-panel').classList.add('winner');
+		document.querySelector('.player-'+ activePlayer +'-panel').classList.remove('active');
 	}else{
 		nextPlayer();
 	};
 });
-
-
-
-
 
 
 //document.querySelector('#current-' + activePlayer).textContent = dice;
