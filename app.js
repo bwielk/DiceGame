@@ -12,6 +12,7 @@ GAME RULES:
 var scores, roundScore, activePlayer, gamePlaying;
 var tosses = [];
 var totalTosses;
+var winningValue;
 
 function add(num){
 	tosses.unshift(num);
@@ -83,7 +84,7 @@ document.querySelector('.btn-hold').addEventListener('click', function(){
 		scores[activePlayer] += roundScore;
 	var playerScore = document.querySelector('#score-'+ activePlayer);
 	playerScore.textContent = scores[activePlayer];
-		if(scores[activePlayer] >= 10){
+		if(scores[activePlayer] >= winningValue){
 			playerScore.textContent = "WINNER!";
 			document.querySelector('.btn-roll').style.display = "none";
 			document.querySelector('.btn-hold').style.display = "none";
@@ -95,6 +96,11 @@ document.querySelector('.btn-hold').addEventListener('click', function(){
 			nextPlayer();
 		};
 	}
+});
+
+document.querySelector('.btn-score').addEventListener('click', function(){
+	winningValue = document.querySelector('.score-input').value;
+	console.log(winningValue);
 });
 
 document.querySelector('.btn-new').addEventListener('click', initPlay);
