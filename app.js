@@ -10,6 +10,21 @@ GAME RULES:
 */
 
 var scores, roundScore, activePlayer, gamePlaying;
+var tosses = [];
+var totalTosses;
+
+function add(num){
+	tosses.unshift(num);
+	if(tosses.length > 2){
+	tosses.pop();
+	}
+	var sum = 0;
+	for(var i=0; i<tosses.length; i++){
+	sum += tosses[i];
+	}
+	totalTosses = sum;
+}
+
 
 function initPlay(){
 	gamePlaying = true;
@@ -49,9 +64,16 @@ document.querySelector('.btn-roll').addEventListener('click', function(){
 	diceDOM.style.display = 'block';
 	diceDOM.src = 'dice-'+ dice + ".png";
 	if(dice !== 1){
+		add(dice);
 		roundScore +=dice;
+		if(totalTosses === 12){
+			nextPlayer();
+		}
 		document.querySelector('#current-' + activePlayer).textContent = roundScore;
+		console.log(tosses);
+		console.log(totalTosses);
 	}else{
+		tosses = [];
 		nextPlayer();
 	}
 });
